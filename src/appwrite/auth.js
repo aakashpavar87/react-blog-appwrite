@@ -10,6 +10,7 @@ export class AuthService {
     this.client
       .setEndpoint(conf.appwriteUrl)
       .setProject(conf.appwriteProjectID);
+
     this.account = new Account(this.client);
   }
 
@@ -39,12 +40,15 @@ export class AuthService {
     }
   }
 
-  async getCurrentUser() {
+  async getUserData() {
     try {
-      return await this.account.get();
+      console.log('In Get User Data Method');
+      console.log('Calling get User');
+      const userAccount = await this.account.get();
+      console.log(userAccount);
+      return userAccount;
     } catch (error) {
-      // throw error;
-      console.log("Error from Auth Service :: ", error);
+      console.log("Error from Auth Get User Service :: ", error);
     }
     return null;
   }
@@ -58,4 +62,6 @@ export class AuthService {
   }
 }
 
-export default new AuthService();
+const authService = new AuthService();
+
+export default authService
