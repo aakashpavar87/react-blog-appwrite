@@ -9,7 +9,7 @@ function Protected({ children, authentication = true }) {
   useEffect(() => {
     if (authentication && authStatus !== authentication) {
       navigate("/login");
-    } else if (authentication && authStatus !== authentication) {
+    } else if (!authentication && authStatus !== authentication) {
       navigate("/");
     }
     setLoader(false);
