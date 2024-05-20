@@ -6,6 +6,7 @@ function Home() {
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     appwriteService.getAllPost().then((posts) => {
+      console.log(posts.documents);
       if (posts) setPosts(posts.documents);
     });
     return () => {};
@@ -30,10 +31,12 @@ function Home() {
     <div className="w-full py-8">
       <Container>
         <div className="flex flex-wrap">
-          {posts.map((post) => {
-            <div className="p-2 w-1/4" key={post.$id}>
-              <PostCard {...post} />
-            </div>;
+          {posts?.map((post) => {
+            return (
+              <div className="p-2 w-1/4" key={post.$id}>
+                <PostCard {...post} />
+              </div>
+            );
           })}
         </div>
       </Container>

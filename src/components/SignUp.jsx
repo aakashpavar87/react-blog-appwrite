@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
@@ -16,7 +16,7 @@ function SignUp() {
     setError("");
     try {
       const userData = await authService.createUser(data);
-      if (userData) dispatch(authLogin(userData));
+      if (userData) dispatch(authLogin({ userData }));
       navigate("/");
     } catch (error) {
       console.log("Error from Sign Up :: ", error);

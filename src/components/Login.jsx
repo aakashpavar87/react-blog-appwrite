@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from "./index";
@@ -17,7 +17,7 @@ function Login() {
       const session = await authService.login(data);
       if (session) {
         const userData = await authService.getUserData();
-        if (userData) dispatch(authLogin(userData));
+        if (userData) dispatch(authLogin({ userData }));
         navigate("/");
       }
     } catch (error) {}

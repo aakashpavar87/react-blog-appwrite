@@ -16,6 +16,7 @@ function PostForm({ post }) {
       },
     });
   const userData = useSelector((state) => state.auth.userData);
+
   const navigate = useNavigate();
 
   const submit = async (data) => {
@@ -67,6 +68,8 @@ function PostForm({ post }) {
   }, []);
 
   useEffect(() => {
+    console.log(userData);
+
     const subscribe = watch((value, { name }) => {
       // Adding slugs to titles of form data
       if (name === "title")
